@@ -20,7 +20,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -30,8 +30,12 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          
-          {children}
+          <div className="min-h-screen bg-white dark:bg-black">
+            <Header />
+            <main>
+              {children}
+            </main>
+          </div>
         </ThemeProvider>
       </body>
     </html>

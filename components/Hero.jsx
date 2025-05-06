@@ -1,6 +1,5 @@
 'use client'
 import { ArrowRight, CheckCircle2, Brain, Trophy, Sparkles } from 'lucide-react';
-import QuestionPreview from './QuestionPreview';
 
 const Hero = () => {
   const features = [
@@ -60,9 +59,6 @@ const Hero = () => {
             </a>
           </div>
         </div>
-
-        {/* Question Preview */}
-        <QuestionPreview />
 
         {/* Features */}
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
