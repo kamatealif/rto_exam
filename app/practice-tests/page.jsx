@@ -229,11 +229,11 @@ const PracticeTests = () => {
                   <div className="text-gray-500">Attempted</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{correct}</div>
+                  <div className="text-2xl font-bold text-green-600 dark:text-green-400">{correct}</div>
                   <div className="text-sm text-gray-500 dark:text-gray-400">Correct</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-rose-600 dark:text-rose-400">{incorrect}</div>
+                  <div className="text-2xl font-bold text-red-600 dark:text-red-400">{incorrect}</div>
                   <div className="text-sm text-gray-500 dark:text-gray-400">Incorrect</div>
                 </div>
               </div>
@@ -243,17 +243,17 @@ const PracticeTests = () => {
               <h3 className="font-semibold mb-3">Question Review:</h3>
               <div className="space-y-4 max-h-64 overflow-y-auto">
                 {userAnswers.map((ans, idx) => (
-                  <div key={idx} className={`p-4 rounded-lg ${ans.isCorrect ? 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800' : 'bg-rose-50 dark:bg-rose-950/30 border-rose-200 dark:border-rose-800'} border`}> 
+                  <div key={idx} className={`p-4 rounded-lg ${ans.isCorrect ? 'bg-green-50 dark:bg-green-950/30 border-green-200 dark:border-green-800' : 'bg-red-50 dark:bg-red-950/30 border-red-200 dark:border-red-800'} border`}> 
                     <div className="font-medium mb-2">Q{idx + 1}: {ans.question}</div>
                     <div className="flex justify-between items-center">
-                      <div className="text-sm">Your answer: <span className={`${ans.isCorrect ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'} font-medium`}>{ans.selected}</span></div>
+                      <div className="text-sm">Your answer: <span className={`${ans.isCorrect ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'} font-medium`}>{ans.selected}</span></div>
                       {ans.timedOut ? (
                         <span className="text-xs bg-amber-500/10 text-amber-700 dark:text-amber-300 px-2.5 py-1 rounded-full border border-amber-200 dark:border-amber-800">Time expired</span>
                       ) : (
                         <span className="text-xs bg-blue-500/10 text-blue-700 dark:text-blue-300 px-2.5 py-1 rounded-full border border-blue-200 dark:border-blue-800">{30 - ans.timeRemaining}s</span>
                       )}
                     </div>
-                    {!ans.isCorrect && <div className="text-sm mt-2">Correct answer: <span className="text-emerald-600 dark:text-emerald-400 font-medium">{ans.correct}</span></div>}
+                    {!ans.isCorrect && <div className="text-sm mt-2">Correct answer: <span className="text-green-600 dark:text-green-400 font-medium">{ans.correct}</span></div>}
                   </div>
                 ))}
               </div>
@@ -285,12 +285,12 @@ const PracticeTests = () => {
             <div className="flex-1 relative">
               <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                 <div 
-                  className={`h-full rounded-full ${timeLeft <= 10 ? 'bg-rose-500' : 'bg-blue-500'} transition-all duration-300`}
+                  className={`h-full rounded-full ${timeLeft <= 10 ? 'bg-red-500' : 'bg-blue-500'} transition-all duration-300`}
                   style={{ width: `${progress}%` }}
                 />
               </div>
             </div>
-            <div className={`flex items-center justify-center w-12 h-8 rounded-full font-medium text-sm ${timeLeft <= 10 ? 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-800' : 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800'}`}>
+            <div className={`flex items-center justify-center w-12 h-8 rounded-full font-medium text-sm ${timeLeft <= 10 ? 'bg-red-500/10 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800' : 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800'}`}>
               {timeLeft}s
             </div>
           </div>
@@ -314,14 +314,14 @@ const PracticeTests = () => {
                     const isCorrect = option === current.correctAnswer;
                     
                     if (isSelected && isCorrect) {
-                      // Selected and correct - emerald theme
-                      buttonClass += " bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-950/30";
+                      // Selected and correct - green theme
+                      buttonClass += " bg-green-50 dark:bg-green-950/30 border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 hover:bg-green-50 dark:hover:bg-green-950/30";
                     } else if (isSelected && !isCorrect) {
-                      // Selected but wrong - rose theme
-                      buttonClass += " bg-rose-50 dark:bg-rose-950/30 border-rose-200 dark:border-rose-800 text-rose-700 dark:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/30";
+                      // Selected but wrong - red theme
+                      buttonClass += " bg-red-50 dark:bg-red-950/30 border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 hover:bg-red-50 dark:hover:bg-red-950/30";
                     } else if (!isSelected && isCorrect) {
-                      // Not selected but is correct answer - emerald theme
-                      buttonClass += " bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300";
+                      // Not selected but is correct answer - green theme
+                      buttonClass += " bg-green-50 dark:bg-green-950/30 border-green-200 dark:border-green-800 text-green-700 dark:text-green-300";
                     } else {
                       // Other options - subtle style
                       buttonClass += " opacity-70";
@@ -344,7 +344,7 @@ const PracticeTests = () => {
                   );
                 })
               ) : (
-                <div className="text-rose-500 p-4 border border-rose-200 rounded-lg bg-rose-50 text-center">
+                <div className="text-red-500 p-4 border border-red-200 rounded-lg bg-red-50 text-center">
                   No options available for this question
                 </div>
               )}
@@ -353,8 +353,8 @@ const PracticeTests = () => {
             {showFeedback && (
               <div className={`p-4 rounded-lg border ${
                 selectedAnswer === current.correctAnswer 
-                  ? 'bg-emerald-50 border-emerald-200 text-emerald-700 dark:bg-emerald-950/30 dark:border-emerald-800 dark:text-emerald-300' 
-                  : 'bg-rose-50 border-rose-200 text-rose-700 dark:bg-rose-950/30 dark:border-rose-800 dark:text-rose-300'
+                  ? 'bg-green-50 border-green-200 text-green-700 dark:bg-green-950/30 dark:border-green-800 dark:text-green-300' 
+                  : 'bg-red-50 border-red-200 text-red-700 dark:bg-red-950/30 dark:border-red-800 dark:text-red-300'
               }`}>
                 <div className="font-medium">
                   {selectedAnswer === current.correctAnswer 
