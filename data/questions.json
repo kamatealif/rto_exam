@@ -1,0 +1,164 @@
+{
+  "questions": [
+    {
+      "id": "1",
+      "question_text": "While driving on a highway, if you see an obstruction on the road ahead, you should",
+      "options": ["Slow down gradually", "Apply brakes suddenly", "Turn to the right and drive fast", "Turn to the left and drive fast"],
+      "correct_answer": "Slow down gradually",
+      "explanation": "When you see an obstruction ahead, slowing down gradually gives you time to assess the situation and react safely.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "2",
+      "question_text": "You are approaching a narrow bridge, and another vehicle is about to enter the bridge from the opposite side. You should",
+      "options": ["Increase your speed and try to cross the bridge before the other vehicle", "Put on the headlight and pass the bridge", "Wait till the other vehicle crosses the bridge and then proceed", "Honk continuously and enter the bridge"],
+      "correct_answer": "Wait till the other vehicle crosses the bridge and then proceed",
+      "explanation": "On narrow bridges, it's safer to wait for oncoming vehicles to pass before proceeding.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "3",
+      "question_text": "When you see the traffic sign showing a school ahead, you should",
+      "options": ["Stop the vehicle and proceed slowly", "Slow down and proceed with caution", "Sound horn and proceed", "Proceed at the same speed"],
+      "correct_answer": "Slow down and proceed with caution",
+      "explanation": "Near schools, you should slow down and be extra cautious as children may cross the road unexpectedly.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "4",
+      "question_text": "When a vehicle is overtaking your vehicle, you should",
+      "options": ["Increase speed", "Reduce speed", "Maintain the same speed", "Drive to the left side"],
+      "correct_answer": "Reduce speed",
+      "explanation": "When being overtaken, you should reduce speed to allow the other vehicle to pass safely.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "5",
+      "question_text": "The following sign represents",
+      "options": ["Stop", "No parking", "Hospital ahead", "Speed limit"],
+      "correct_answer": "Stop",
+      "explanation": "The octagonal red sign with 'STOP' written on it means you must come to a complete stop.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "6",
+      "question_text": "When a blind person is crossing the road holding a white cane, the driver of a vehicle shall",
+      "options": ["Stop the vehicle and proceed after the person crosses", "Slow down and proceed with caution", "Sound horn and proceed", "Proceed without stopping"],
+      "correct_answer": "Stop the vehicle and proceed after the person crosses",
+      "explanation": "You must stop and allow a blind person with a white cane to cross safely before proceeding.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "7",
+      "question_text": "What does a red traffic light indicate?",
+      "options": ["Stop", "Go", "Slow down", "Turn left"],
+      "correct_answer": "Stop",
+      "explanation": "A red traffic light means you must stop your vehicle.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "8",
+      "question_text": "What is the meaning of a solid yellow line on your side of the center line?",
+      "options": ["No overtaking", "Overtake with caution", "Free to overtake", "Road closed"],
+      "correct_answer": "No overtaking",
+      "explanation": "A solid yellow line means overtaking is not allowed.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "9",
+      "question_text": "What should you do when you see a pedestrian crossing the road at a zebra crossing?",
+      "options": ["Stop and let them cross", "Honk and pass", "Speed up", "Ignore and go ahead"],
+      "correct_answer": "Stop and let them cross",
+      "explanation": "You must stop and allow pedestrians to cross safely at a zebra crossing.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "10",
+      "question_text": "Which vehicle has the right of way at an uncontrolled intersection?",
+      "options": ["Vehicle on your right", "Vehicle on your left", "Your vehicle", "Bigger vehicle"],
+      "correct_answer": "Vehicle on your right",
+      "explanation": "At an uncontrolled intersection, the vehicle on your right has the right of way.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "11",
+      "question_text": "What is the maximum speed limit in cities unless otherwise posted?",
+      "options": ["50 km/h", "80 km/h", "100 km/h", "30 km/h"],
+      "correct_answer": "50 km/h",
+      "explanation": "The typical maximum speed limit in cities is 50 km/h unless otherwise indicated.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "12",
+      "question_text": "What should you do if you see a school bus stopped with flashing red lights?",
+      "options": ["Stop your vehicle", "Honk and pass", "Overtake quickly", "Ignore and continue"],
+      "correct_answer": "Stop your vehicle",
+      "explanation": "You must stop your vehicle until the bus moves or the lights stop flashing.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "13",
+      "question_text": "What does a triangular road sign with a red border indicate?",
+      "options": ["Warning", "Mandatory", "Information", "Direction"],
+      "correct_answer": "Warning",
+      "explanation": "A triangle with a red border is a warning sign.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "14",
+      "question_text": "When are you allowed to use a mobile phone while driving?",
+      "options": ["Never", "When stopped at a red light", "When using hands-free", "While overtaking"],
+      "correct_answer": "When using hands-free",
+      "explanation": "Using a mobile phone while driving is prohibited unless using a hands-free device.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "15",
+      "question_text": "What is the minimum age for obtaining a learner's license for a motorcycle without gear in India?",
+      "options": ["16 years", "18 years", "21 years", "14 years"],
+      "correct_answer": "16 years",
+      "explanation": "The minimum age is 16 years for a motorcycle without gear.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "16",
+      "question_text": "What should you do if an ambulance is approaching behind you?",
+      "options": ["Give way and let it pass", "Increase speed", "Block its path", "Ignore"],
+      "correct_answer": "Give way and let it pass",
+      "explanation": "You must give way to emergency vehicles like ambulances.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "17",
+      "question_text": "What does a blue circular sign indicate?",
+      "options": ["Mandatory instruction", "Warning", "Information", "Prohibition"],
+      "correct_answer": "Mandatory instruction",
+      "explanation": "Blue circular signs are used for mandatory instructions.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "18",
+      "question_text": "What is the correct way to overtake another vehicle?",
+      "options": ["From the right", "From the left", "From any side", "Never overtake"],
+      "correct_answer": "From the right",
+      "explanation": "Always overtake from the right side in India.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "19",
+      "question_text": "When can you park your vehicle on a main road?",
+      "options": ["Never", "At night", "During traffic jam", "When there is no traffic"],
+      "correct_answer": "Never",
+      "explanation": "Parking on a main road is prohibited.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "20",
+      "question_text": "What is the penalty for driving without a valid license?",
+      "options": ["Fine and/or imprisonment", "No penalty", "Warning only", "Vehicle seized"],
+      "correct_answer": "Fine and/or imprisonment",
+      "explanation": "Driving without a license can result in a fine and/or imprisonment.",
+      "difficulty": "medium"
+    }
+  ]
+}
