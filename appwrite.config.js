@@ -1,14 +1,14 @@
-import { Client } from 'appwrite';
+import {Client, Account} from 'appwrite';
 
-const client = new Client();
+const client = new Client()
+    .setEndpoint('http://localhost:8080')
+    .setProject('65f842e724264566317e');
 
-export const appwriteConfig = {
-  endpoint: process.env.APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1',
-  projectId: process.env.APPWRITE_PROJECT_ID || '681c28250019e84af0cf',
-  databaseId: process.env.APPWRITE_DATABASE_ID || '681c295b0012f5857b54',
-  collectionId: process.env.APPWRITE_COLLECTION_ID || '681c29620021b7a8a9c3'
+const account = {
+  endpoint: 'http://localhost:8080',
+  projectId: '65f842e724264566317e',
+  databaseId: '65f842e724264566317e',
+  collectionId: '65f842e724264566317e'
 };
 
-client
-  .setEndpoint(appwriteConfig.endpoint)
-  .setProject(appwriteConfig.projectId);
+export { account, client };
