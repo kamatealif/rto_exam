@@ -239,16 +239,23 @@ export default function AdminQuestions() {
                   <CheckCircle2 className="h-4 w-4 text-muted-foreground" />
                   <Label>Correct Answer</Label>
                 </div>
-                <div className="relative">
-                  <Input
-                    {...form.register('correct')}
-                    placeholder="Enter the correct answer"
-                    className="w-full"
-                  />
-                  <span className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground">
-                    {form.watch('correct')?.length || 0}/50
-                  </span>
-                </div>
+                <Select
+                  onValueChange={(value) => form.setValue('correct', value)}
+                  defaultValue={form.getValues('correct')}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select correct answer" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {form.watch('options')?.map((option, index) => (
+                      <SelectItem key={index} value={index.toString()}>
+                        {String.fromCharCode(65 + index)}. {option}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 {form.formState.errors.correct && (
                   <p className="text-sm text-destructive">
                     {form.formState.errors.correct.message}
