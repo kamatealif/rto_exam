@@ -142,7 +142,7 @@ export default function AdminQuestions() {
 
   return (
     <div className={containerStyles.container}>
-      <div className={containerStyles.form}>
+      <div className="max-w-4xl w-full space-y-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold">Admin Questions</h1>
           <p className="text-sm text-muted-foreground">
@@ -157,16 +157,11 @@ export default function AdminQuestions() {
                   <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   <Label>Question Text</Label>
                 </div>
-                <div className="relative">
-                  <Input
-                    {...form.register('question_text')}
-                    placeholder="Enter your question here"
-                    className="w-full"
-                  />
-                  <span className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground">
-                    {form.watch('question_text')?.length || 0}/200
-                  </span>
-                </div>
+                <Input
+                  {...form.register('question_text')}
+                  placeholder="Enter your question here"
+                  className="w-full"
+                />
                 {form.formState.errors.question_text && (
                   <p className="text-sm text-destructive">
                     {form.formState.errors.question_text.message}
@@ -213,16 +208,11 @@ export default function AdminQuestions() {
                     <div key={letter} className="space-y-2">
                       <div className="flex items-center gap-2">
                         <span className="text-sm text-muted-foreground">{letter}. </span>
-                        <div className="relative">
-                          <Input
-                            {...form.register(`options.${index}`)}
-                            placeholder={`Option ${letter}`}
-                            className="w-full"
-                          />
-                          <span className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground">
-                            {form.watch(`options.${index}`)?.length || 0}/50
-                          </span>
-                        </div>
+                        <Input
+                          {...form.register(`options.${index}`)}
+                          placeholder={`Option ${letter}`}
+                          className="w-full"
+                        />
                       </div>
                       {form.formState.errors.options?.[index] && (
                         <p className="text-sm text-destructive">
@@ -268,21 +258,16 @@ export default function AdminQuestions() {
                   <Image className="h-4 w-4 text-muted-foreground" />
                   <Label>Image (optional)</Label>
                 </div>
-                <div className="relative">
-                  <Input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                      if (e.target.files && e.target.files[0]) {
-                        handleImageUpload(e.target.files[0]);
-                      }
-                    }}
-                    className="w-full"
-                  />
-                  <span className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground">
-                    {imagePreview ? 'Selected' : 'No file chosen'}
-                  </span>
-                </div>
+                <Input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    if (e.target.files && e.target.files[0]) {
+                      handleImageUpload(e.target.files[0]);
+                    }
+                  }}
+                  className="w-full"
+                />
                 {imagePreview && (
                   <div className="mt-2">
                     <img
