@@ -12,30 +12,35 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-import { AuthService } from "@/lib/server/auth";
+import authService from "@/lib/server/auth";
 
-const Login = () => {
+const Signup = () => {
   const form = useForm();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async (data) => {
+  const handleSignup = async (data) => {
     setIsLoading(true);
     setError("");
 
+    console.log("Form submitted", data); // Debug log
+
     // Basic validation
-    if (!data.email || !data.password) {
-      setError("Email and password are required");
+    if (!data.email || !data.password || !data.name) {
+      setError("Name, email, and password are required");
       setIsLoading(false);
       return;
     }
-    console.log("Login data", data);
-    console.log("Form submitted", data);
+
     try {
-      const authService = new AuthService();
-      const response = await authService.login({ ...data });
-      // Handle successful login response
-      console.log("Login successful:", response);
+      const auth = new authService();
+      const response = await auth.createAccount({
+        email: data.email,
+        password: data.password,
+        name: data.name,
+      });
+      // Handle successful signup response
+      console.log("Signup successful:", response);
     } catch (error) {
       setError(error.message || "An unexpected error occurred");
     } finally {
@@ -45,9 +50,18 @@ const Login = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen gap-6">
-      <Form {...form} onSubmit={form.handleSubmit(handleLogin)}>
+      <Form {...form} onSubmit={form.handleSubmit(handleSignup)}>
         {/* General Error Message */}
         {error && <div className="text-red-500 mb-4">{error}</div>}
+
+        <FormField name="name" control={form.control}>
+          <FormItem>
+            <FormLabel>Name</FormLabel>
+            <FormControl>
+              <Input type="text" placeholder="Enter your name" />
+            </FormControl>
+          </FormItem>
+        </FormField>
 
         <FormField name="email" control={form.control}>
           <FormItem>
@@ -74,18 +88,18 @@ const Login = () => {
             isLoading ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >
-          {isLoading ? "Loading..." : "Login"}
+          {isLoading ? "Loading..." : "Sign Up"}
         </Button>
       </Form>
 
       <p className="text-sm">
-        Don&apos;t have an account?{" "}
-        <Link href="/signup" className="text-blue-500">
-          Sign up
+        Already have an account?{" "}
+        <Link href="/login" className="text-blue-500">
+          Log in
         </Link>
       </p>
     </div>
   );
 };
 
-export default Login;
+export default Signup;

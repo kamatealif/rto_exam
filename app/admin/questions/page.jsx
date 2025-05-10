@@ -1,22 +1,35 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Client } from 'appwrite';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { HelpCircle, Tag,  CheckCircle2} from 'lucide-react';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useForm } from 'react-hook-form';
-import { account } from 'appwrite';
+import { useState, useEffect } from "react";
+import { Client } from "appwrite";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { HelpCircle, Tag, CheckCircle2 } from "lucide-react";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useForm } from "react-hook-form";
+import { Account } from "appwrite";
 
 export default function AdminQuestions() {
   const [questions, setQuestions] = useState([]);
-  const [imagePreview, setImagePreview] = useState('');
-  const [error, setError] = useState('');
+  const [imagePreview, setImagePreview] = useState("");
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -26,11 +39,11 @@ export default function AdminQuestions() {
 
   const form = useForm({
     defaultValues: {
-      question_text: '',
-      category: '',
-      options: ['', '', '', ''],
-      correct: '',
-      image: '',
+      question_text: "",
+      category: "",
+      options: ["", "", "", ""],
+      correct: "",
+      image: "",
     },
   });
 
@@ -38,10 +51,10 @@ export default function AdminQuestions() {
   //   try {
   //     const client = new Client();
   //     client
-  //       .setEndpoint(account.endpoint)
-  //       .setProject(account.projectId);
+  //       .setEndpoint(Account.endpoint)
+  //       .setProject(Account.projectId);
 
-  //     const user = await client.account.get();
+  //     const user = await client.Account.get();
   //     // Add your admin check logic here
   //     // For example, check if user has admin role
   //     if (!user.roles.includes('admin')) {
@@ -54,16 +67,14 @@ export default function AdminQuestions() {
 
   // Responsive container styles
   const containerStyles = {
-    container: 'min-h-screen flex flex-col items-center justify-center p-4',
-    form: 'w-full max-w-2xl space-y-8',
-    questions: 'w-full max-w-3xl',
+    container: "min-h-screen flex flex-col items-center justify-center p-4",
+    form: "w-full max-w-2xl space-y-8",
+    questions: "w-full max-w-3xl",
   };
 
   useEffect(() => {
     const client = new Client();
-    client
-      .setEndpoint(account.endpoint)
-      .setProject(account.projectId);
+    client.setEndpoint(Account.endpoint).setProject(Account.projectId);
 
     // checkAdmin();
     fetchQuestions();
@@ -72,75 +83,69 @@ export default function AdminQuestions() {
   const fetchQuestions = async () => {
     try {
       const client = new Client();
-      client
-        .setEndpoint(account.endpoint)
-        .setProject(account.projectId);
+      client.setEndpoint(Account.endpoint).setProject(Account.projectId);
 
       const response = await client.database.listDocuments(
-        account.databaseId,
-        account.collectionId
+        Account.databaseId,
+        Account.collectionId
       );
       setQuestions(response.documents);
     } catch (error) {
-      console.error('Error fetching questions:', error);
-      setError('Failed to fetch questions');
+      console.error("Error fetching questions:", error);
+      setError("Failed to fetch questions");
     }
   };
 
   const handleImageUpload = async (file) => {
     try {
       const client = new Client();
-      client
-        .setEndpoint(account.endpoint)
-        .setProject(account.projectId);
+      client.setEndpoint(Account.endpoint).setProject(Account.projectId);
 
       const storage = new Storage(client);
       const fileResponse = await storage.createFile(
-        'questions',
+        "questions",
         file.name,
         file,
-        ['role:admin']
+        ["role:admin"]
       );
 
-      form.setValue('image', fileResponse.$id);
+      form.setValue("image", fileResponse.$id);
       setImagePreview(URL.createObjectURL(file));
     } catch (error) {
-      console.error('Error uploading image:', error);
-      setError('Failed to upload image');
+      console.error("Error uploading image:", error);
+      setError("Failed to upload image");
     }
   };
 
   const handleAddQuestion = async () => {
     try {
       const client = new Client();
-      client
-        .setEndpoint(account.endpoint)
-        .setProject(account.projectId);
+      client.setEndpoint(Account.endpoint).setProject(Account.projectId);
 
       const database = new Databases(client);
       const data = {
-        question_text: form.getValues('question_text'),
-        options: form.getValues('options').join(','),
-        correct: form.getValues('correct'),
-        image_id: form.getValues('image') || '',
-        category: form.getValues('category')
+        question_text: form.getValues("question_text"),
+        options: form.getValues("options").join(","),
+        correct: form.getValues("correct"),
+        image_id: form.getValues("image") || "",
+        category: form.getValues("category"),
       };
 
       await database.createDocument(
-        account.databaseId,
-        account.collectionId,
-        'unique()',
+        Account.databaseId,
+        Account.collectionId,
+        "unique()",
         data
       );
 
       form.reset();
       setImagePreview(null);
-      setError('');
+      setError("");
 
       fetchQuestions();
     } catch (error) {
-      console.error('Error adding question:', error);
-      setError('Failed to add question');
+      console.error("Error adding question:", error);
+      setError("Failed to add question");
     }
   };
 
@@ -156,14 +161,17 @@ export default function AdminQuestions() {
             <h1 className="text-3xl font-bold mb-6">Manage Questions</h1>
           </div>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleAddQuestion)} className="space-y-6">
+            <form
+              onSubmit={form.handleSubmit(handleAddQuestion)}
+              className="space-y-6"
+            >
               <div className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="question_text">Question Text</Label>
                   <Input
                     id="question_text"
-                    {...form.register('question_text', {
-                      required: 'Question text is required',
+                    {...form.register("question_text", {
+                      required: "Question text is required",
                     })}
                   />
                   <FormMessage />
@@ -171,8 +179,8 @@ export default function AdminQuestions() {
                 <div className="space-y-2">
                   <Label htmlFor="category">Category</Label>
                   <Select
-                    onValueChange={form.setValue.bind(form, 'category')}
-                    defaultValue={form.getValues('category')}
+                    onValueChange={form.setValue.bind(form, "category")}
+                    defaultValue={form.getValues("category")}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -182,7 +190,9 @@ export default function AdminQuestions() {
                     <SelectContent>
                       <SelectItem value="theory">Theory</SelectItem>
                       <SelectItem value="practical">Practical</SelectItem>
-                      <SelectItem value="multiple_choice">Multiple Choice</SelectItem>
+                      <SelectItem value="multiple_choice">
+                        Multiple Choice
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -192,8 +202,8 @@ export default function AdminQuestions() {
                     <Label htmlFor="options.0">Option A</Label>
                     <Input
                       id="options.0"
-                      {...form.register('options.0', {
-                        required: 'Option A is required',
+                      {...form.register("options.0", {
+                        required: "Option A is required",
                       })}
                     />
                     <FormMessage />
@@ -202,8 +212,8 @@ export default function AdminQuestions() {
                     <Label htmlFor="options.1">Option B</Label>
                     <Input
                       id="options.1"
-                      {...form.register('options.1', {
-                        required: 'Option B is required',
+                      {...form.register("options.1", {
+                        required: "Option B is required",
                       })}
                     />
                     <FormMessage />
@@ -212,8 +222,8 @@ export default function AdminQuestions() {
                     <Label htmlFor="options.2">Option C</Label>
                     <Input
                       id="options.2"
-                      {...form.register('options.2', {
-                        required: 'Option C is required',
+                      {...form.register("options.2", {
+                        required: "Option C is required",
                       })}
                     />
                     <FormMessage />
@@ -222,8 +232,8 @@ export default function AdminQuestions() {
                     <Label htmlFor="options.3">Option D</Label>
                     <Input
                       id="options.3"
-                      {...form.register('options.3', {
-                        required: 'Option D is required',
+                      {...form.register("options.3", {
+                        required: "Option D is required",
                       })}
                     />
                     <FormMessage />
@@ -232,8 +242,8 @@ export default function AdminQuestions() {
                 <div className="space-y-2">
                   <Label htmlFor="correct">Correct Answer</Label>
                   <Select
-                    onValueChange={form.setValue.bind(form, 'correct')}
-                    defaultValue={form.getValues('correct')}
+                    onValueChange={form.setValue.bind(form, "correct")}
+                    defaultValue={form.getValues("correct")}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -254,7 +264,7 @@ export default function AdminQuestions() {
                   <Input
                     type="file"
                     id="image"
-                    {...form.register('image')}
+                    {...form.register("image")}
                     onChange={(e) => {
                       if (e.target.files && e.target.files[0]) {
                         const reader = new FileReader();
@@ -278,7 +288,7 @@ export default function AdminQuestions() {
                 </div>
               </div>
               <Button type="submit" className="w-full">
-                {isLoading ? 'Saving...' : 'Save Question'}
+                {isLoading ? "Saving..." : "Save Question"}
               </Button>
             </form>
           </Form>
@@ -299,7 +309,9 @@ export default function AdminQuestions() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <HelpCircle className="h-5 w-5 text-muted-foreground" />
-                          <h3 className="font-medium">{question.question_text}</h3>
+                          <h3 className="font-medium">
+                            {question.question_text}
+                          </h3>
                         </div>
                         <div className="flex items-center gap-2">
                           <Tag className="h-4 w-4 text-muted-foreground" />
@@ -310,9 +322,14 @@ export default function AdminQuestions() {
                     <CardContent>
                       <div className="space-y-4">
                         <div className="grid grid-cols-2 gap-4">
-                          {question.options.split(',').map((option, index) => (
-                            <div key={index} className="flex items-center gap-2">
-                              <span className="text-sm text-muted-foreground">{String.fromCharCode(65 + index)}. </span>
+                          {question.options.split(",").map((option, index) => (
+                            <div
+                              key={index}
+                              className="flex items-center gap-2"
+                            >
+                              <span className="text-sm text-muted-foreground">
+                                {String.fromCharCode(65 + index)}.{" "}
+                              </span>
                               <span>{option}</span>
                             </div>
                           ))}
