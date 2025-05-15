@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-import { AuthService } from "@/lib/server/auth";
+import authService from "@/lib/server/auth";
 
 const Login = () => {
   const form = useForm();
@@ -22,20 +22,22 @@ const Login = () => {
   const handleLogin = async (data) => {
     setIsLoading(true);
     setError("");
-
+    // Debug log
+    console.log("Form submitted", data);
     // Basic validation
     if (!data.email || !data.password) {
       setError("Email and password are required");
       setIsLoading(false);
       return;
     }
-    console.log("Login data", data);
-    console.log("Form submitted", data);
     try {
-      const authService = new AuthService();
-      const response = await authService.login({ ...data });
+      const response = await authService.login({
+        email: data.email,
+        password: data.password,
+      });
       // Handle successful login response
       console.log("Login successful:", response);
+      // Optionally redirect or show success message here
     } catch (error) {
       setError(error.message || "An unexpected error occurred");
     } finally {
