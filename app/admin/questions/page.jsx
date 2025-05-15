@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/select";
 import { useForm } from "react-hook-form";
 import { Account } from "appwrite";
+import conf from "@/config/config";
 
 export default function AdminQuestions() {
   const [questions, setQuestions] = useState([]);
@@ -74,7 +75,7 @@ export default function AdminQuestions() {
 
   useEffect(() => {
     const client = new Client();
-    client.setEndpoint(Account.endpoint).setProject(Account.projectId);
+    client.setEndpoint(conf.appwriteEndpoint).setProject(conf.appwriteProjectId);
 
     // checkAdmin();
     fetchQuestions();
@@ -83,11 +84,11 @@ export default function AdminQuestions() {
   const fetchQuestions = async () => {
     try {
       const client = new Client();
-      client.setEndpoint(Account.endpoint).setProject(Account.projectId);
+      client.setEndpoint(conf.appwriteEndpoint).setProject(conf.appwriteProjectId);
 
       const response = await client.database.listDocuments(
-        Account.databaseId,
-        Account.collectionId
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId
       );
       setQuestions(response.documents);
     } catch (error) {
@@ -99,11 +100,11 @@ export default function AdminQuestions() {
   const handleImageUpload = async (file) => {
     try {
       const client = new Client();
-      client.setEndpoint(Account.endpoint).setProject(Account.projectId);
+      client.setEndpoint(conf.appwriteEndpoint).setProject(conf.appwriteProjectId);
 
       const storage = new Storage(client);
       const fileResponse = await storage.createFile(
-        "questions",
+        conf.appwriteCollectionId,
         file.name,
         file,
         ["role:admin"]
@@ -120,7 +121,7 @@ export default function AdminQuestions() {
   const handleAddQuestion = async () => {
     try {
       const client = new Client();
-      client.setEndpoint(Account.endpoint).setProject(Account.projectId);
+      client.setEndpoint(conf.appwriteEndpoint).setProject(conf.appwriteProjectId);
 
       const database = new Databases(client);
       const data = {
